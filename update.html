@@ -1,0 +1,77 @@
+{%extends "layout.html" %}
+{% block title %}addemp{% endblock %}
+{% block content %} 
+
+<script>
+    function updateemp()
+    {
+        var emp_id = $("#emp_id").val();
+        var empname = $("#name").val();
+        var mobile = $("#mobile").val();
+        var email = $("#email").val();
+        var address = $("#address").val();
+        var jd = $("#jd").val();
+        var years = $("#years").val();
+        var degree = $("#degree").val();
+        var desig = $("#desig").val();
+        $.post(
+            '/updateemp',
+            'empname='+empname+'&mobile='+mobile+'&email='+email+'&address='+address+'&jd='+jd+'&years='+years+'&degree='+degree+'&desig='+desig+'&emp_id='+emp_id,
+            function(response)
+            {
+                console.log(response)
+                if(response == '1')
+                {
+                    alert('Employee data has benn updated successfully');
+                    location.href = '/emplist'
+                }
+            }
+        );
+    }
+</script>
+<div class="container" style="text-align: center;">
+    <a class="btn btn-warning" style="margin-top: 3%;width: 12%;float:right;background: #fbceb5;border-color: #fbceb5;" href="{{url_for('logout')}}">Log out</a>
+    <h2 class="text-align: center">Add Employee</h2><br>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="/static/images/em.png" style="margin:auto;display:block;">
+        </div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <label>Employee Name:</label>
+                <input type="text" class="form-control" style="width: 84%;text-align: center;margin-left: 8%;" id="name" placeholder="Enter Name" value="{{empdata.name}}" required>
+            </div><br>
+            <div class="form-group">
+                <label>Mobile:</label>
+                <input type="phone" class="form-control" style="width: 84%;text-align: center; margin-left: 8%;" id="mobile" placeholder="Enter Phone Number" value="{{empdata.mobile}}"  required>
+            </div><br>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" class="form-control" style="width: 84%;text-align: center; margin-left: 8%;" id="email" placeholder="Enter Email" value="{{empdata.email}}" required>
+            </div><br>
+            <div class="form-group">
+                <label>Address:</label>
+                <input type="text" class="form-control" style="width: 84%;text-align: center; margin-left: 8%;" id="address" placeholder="Enter Address" value="{{empdata.address}}" required>
+            </div><br>
+            <div class="form-group">
+                <label>Joining Date:</label>
+                <input type="date" class="form-control" style="width: 84%;text-align: center; margin-left: 8%;" id="jd" placeholder="Enter Joining date" value="{{empdata.jd}}" required>
+            </div><br>
+            <div class="form-group">
+                <label>Years of Experience</label>
+                <input type="text" class="form-control" style="text-align: center; margin-left: 8%;  width: 84%;" id="years" placeholder="Enter years" value="{{empdata.years}}" required>
+            </div><br>
+            <div class="form-group">
+                <label>Degree</label>
+                <input type="text" class="form-control" style=" text-align: center; margin-left: 8%; width: 84%;" id="degree" placeholder="Enter degree" value="{{empdata.degree}}" required>
+            </div><br>
+            <div class="form-group">
+                <label>Designation</label>
+                <input type="text" class="form-control" style=" text-align: center; margin-left: 8%; width: 84%;" id="desig" placeholder="Enter designation" value="{{empdata.desig}}" required>
+            </div><br>
+            <input type = "hidden" id = "emp_id" value = "{{empdata.id}}">
+            <button class="btn btn-success" type="submit" style=" width: 30%;background-color:grey;border-color: grey;margin:auto;display:block;background-color:grey;" onclick="updateemp()">Update</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
