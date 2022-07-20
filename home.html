@@ -1,0 +1,39 @@
+{%extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %} 
+<body>
+   <div class="container-fluid">
+      {% if msg|length %}
+      <div class="alert alert-success alert-dismissible">
+         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+         <p class="text-center">{{msg}}</p>
+      </div>
+      {% endif %}
+      <div class="row">
+         <div class="col-md-12">
+            <h2 class="text-center" style="text-align: center!important;margin-bottom: 5%;          text-decoration: underline;">Employee Management System</h2>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-6">
+            <img src="static/images/emp.jpg" style="margin:auto;display:block;">
+         </div>
+         <div class="col-md-6">
+            <div class="row">
+               <div class="col-md-6" style="margin-left: 40%;margin-top: 20%;">
+                  <a class="btn btn-primary" style="margin: auto;display: block;background-color:grey;
+                     border-color: grey;" href="{{url_for('addemp')}}">Add Employee</a><br>
+                  <a class="btn btn-primary" style="margin: auto;display: block;background-color:grey;
+                     border-color: grey;" href="{{url_for('emplist')}}">Employee List</a><br>
+                      <a class="btn btn-primary" style="margin: auto;display: block;background-color:grey;
+                      border-color: grey;" href="{{url_for('attendance')}}">Attendance</a><br>
+                       <a class="btn btn-primary" style="margin: auto;display: block;background-color:grey;
+                       border-color: grey;" href="{{url_for('search')}}">Search</a><br>
+                  <a class="btn btn-primary" style="margin: auto;display: block;background: #fbceb5;border-color: #fbceb5;" href="{{url_for('logout')}}">Logout</a><br>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+{% endblock %}
